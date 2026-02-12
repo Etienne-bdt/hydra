@@ -1,3 +1,66 @@
+[project]
+name = "hydra-core"
+version = "1.4.0.dev1"
+description = "A framework for elegantly configuring complex applications"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Omry Yadan", email = "omry@fb.com"},
+]
+keywords = ["command-line", "configuration", "yaml", "tab-completion"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "omegaconf>=2.3.0",
+    "importlib-resources; python_version<'3.9'",
+    "packaging",
+]
+
+[project.urls]
+Homepage = "https://github.com/facebookresearch/hydra"
+
+[project.entry-points.pytest11]
+hydra_pytest = "hydra.extra.pytest_plugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["hydra"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hydra"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/hydra",
+    "/build_helpers",
+    "/requirements",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.pypi-dependencies]
+hydra-core = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+
+
 [tool.towncrier]
     package = "hydra"
     package_dir = ""

@@ -19,3 +19,6 @@ pip-wheel-metadata
 TODO.txt
 /venv
 /.venv
+# pixi environments
+.pixi/*
+!.pixi/config.toml
